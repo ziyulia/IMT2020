@@ -34,7 +34,8 @@ int main() {
         Volatility volatility = 0.20;
         Date maturity(17, May, 1999);
         DayCounter dayCounter = Actual365Fixed();
-
+        Time t = Actual360().yearFraction(settlementDate,maturity);
+        
         std::cout << "Option type = "  << type << std::endl;
         std::cout << "Maturity = "        << maturity << std::endl;
         std::cout << "Underlying price = "        << underlying << std::endl;
@@ -45,8 +46,12 @@ int main() {
                   << std::endl;
         std::cout << "Volatility = " << io::volatility(volatility)
                   << std::endl;
+        std::cout << "dayCount = " << t
+                << std::endl;
         std::cout << std::endl ;
-
+        
+        
+        
         std::vector<Date> exerciseDates;
         for (Integer i=1; i<=4; i++)
             exerciseDates.push_back(settlementDate + 3*i*Months);
